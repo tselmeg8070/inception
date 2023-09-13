@@ -16,7 +16,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
   && chmod +x wp-cli.phar \
   && mv wp-cli.phar /usr/local/bin/wp
 
-COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/
+COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
 
 RUN mkdir /run/php
 
@@ -31,5 +31,5 @@ RUN chmod -R 755 /var/www/html
 
 EXPOSE 9000
 
-CMD ["/usr/sbin/php-fpm8.2", "-F"]
+CMD ["/usr/sbin/php-fpm7.3", "-F"]
 

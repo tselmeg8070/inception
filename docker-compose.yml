@@ -9,7 +9,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - mariadb-data2:/var/www/html
+      - wordpress-data2:/var/www/html
     networks:
       - mynetwork
     restart: always

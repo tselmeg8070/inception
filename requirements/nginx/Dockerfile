@@ -6,6 +6,9 @@ RUN		apt-get update && \
 		apt-get install -y nginx \
                 openssl
 
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html
+
 # Create a self-signed SSL certificate (you can replace this with your own certificate)
 RUN mkdir /etc/nginx/ssl
 RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
@@ -16,9 +19,6 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
 COPY ./conf/wordpress.conf /etc/nginx/conf.d
 
 RUN mkdir -p /run/nginx
-
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html
 
 # Expose ports
 EXPOSE 443
