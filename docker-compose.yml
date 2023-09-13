@@ -9,7 +9,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - wordpress-data2:/var/www/html
+      - wordpress-data3:/var/www/html
     networks:
       - mynetwork
     restart: always
@@ -19,7 +19,7 @@ services:
     env_file:
       - .env
     volumes:
-      - mariadb-data2:/var/lib/mysql
+      - mariadb-data3:/var/lib/mysql
     networks:
       - mynetwork
     restart: always
@@ -32,21 +32,21 @@ services:
     env_file:
       - .env
     volumes:
-      - wordpress-data2:/var/www/html
+      - wordpress-data3:/var/www/html
     networks:
       - mynetwork
 volumes:
-  mariadb-data2:
+  mariadb-data3:
     driver: local
     driver_opts:
       type: none
-      device: /home/tselmeg/data/mariadb
+      device: /home/tadiyamu/data/mariadb
       o: bind
-  wordpress-data2:
+  wordpress-data3:
     driver: local
     driver_opts:
       type: none
-      device: /home/tselmeg/data/wordpress
+      device: /home/tadiyamu/data/wordpress
       o: bind
 
 networks:
