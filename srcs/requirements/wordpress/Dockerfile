@@ -6,9 +6,11 @@ RUN apt-get update && apt-get -y install \
 	bash \
 	php \
 	php-cgi \
+	php-curl \
 	php-mysql \
 	php-fpm \
 	php-pdo \
+	mariadb-client \
 	php-gd php-cli \
 	php-mbstring
 

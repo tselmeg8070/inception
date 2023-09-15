@@ -8,8 +8,8 @@ re:
 	docker-compose -f srcs/docker-compose.yml up -d --build
 
 clean: down
-	docker system prune -a
 	sudo rm -rf /home/tadiyamu/data/wordpress/*
 	sudo rm -rf /home/tadiyamu/data/mariadb/*
+	docker system prune -a
 
 .PHONY: all re down clean

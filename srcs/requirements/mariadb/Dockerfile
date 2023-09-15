@@ -2,10 +2,12 @@
 FROM debian:buster
 
 # Install MariaDB
-RUN     apt-get update -y && \
-        apt-get upgrade -y && \
-        apt-get install mariadb-server \
-        mariadb-client -y
+RUN apt-get update && apt-get install -y software-properties-common
+RUN apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+RUN add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirror.rackspace.com/mariadb/repo/10.3/debian buster main'
+
+RUN     apt-get install mariadb-server
+RUN     apt-get install mariadb-client
 
 RUN     mkdir -p /var/run/mysqld && \
         chown -R mysql:mysql /var/run/mysqld && \
