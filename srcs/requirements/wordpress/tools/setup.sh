@@ -54,19 +54,19 @@ else
 	
 	
 	wp core install \
-		--url=https://tadiyamu.42.fr \
-		--title=Tselmeg \
-		--admin_user=tselmeg_wordpress \
-		--admin_password=Bodygram \
-		--admin_email=tselmeg8070@gmail.com \
+		--url=$WP_URL \
+		--title=$WP_TITLE \
+		--admin_user=$WP_ADMIN_USER \
+		--admin_password=$WP_ADMIN_PASSWORD \
+		--admin_email=$WP_ADMIN_EMAIL \
 		--allow-root
 
-	wp user create bob bob@example.com \
+	wp user create $WP_AUTHOR_USER $WP_AUTHOR_EMAIL \
 		--role=author \
 		--allow-root
 	
 	wp user update bob \
-		--user_pass="Bodygram" \
+		--user_pass=$WP_AUTHOR_PASSWORD \
 		--allow-root
 
 fi
