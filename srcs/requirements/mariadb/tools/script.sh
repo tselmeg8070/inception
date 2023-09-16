@@ -10,12 +10,15 @@ mysql_install_db
 
 /etc/init.d/mysql start
 
-pwd
 if [ -d "/var/lib/mysql/$MYSQL_DB" ]
 then 
 
 	echo "Database already exists"
 else
+
+while ! mysqladmin ping --silent; do
+    sleep 1
+done
 mysql_secure_installation << _EOF_
 
 Y
@@ -28,7 +31,7 @@ Y
 _EOF_
 
 echo "GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; FLUSH PRIVILEGES;" | mysql -uroot
-echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DB; GRANT ALL ON $MYSQL_DB.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'; FLUSH PRIVILEGES;" | mysql -u root
+echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DB; GRANT ALL ON $MYSQL_DB.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'; FLUSH PRIVILEGES;" | mysql -uroot
 
 fi
 

@@ -20,6 +20,8 @@ RUN chmod +x /tmp/script.sh && \
     chown -R mysql:mysql /tmp/ && \
     chown -R mysql:mysql /etc/mysql
 
+EXPOSE 3306
+
 # Start MariaDB and run the setup SQL script during container startup
 ENTRYPOINT ["sh", "/tmp/script.sh"]
 

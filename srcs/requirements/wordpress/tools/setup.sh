@@ -48,10 +48,13 @@ else
 		--allow-root
 	sed -i "s/username_here/$MYSQL_USER/g" wp-config-sample.php
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
-	sed -i "s/localhost/mariadb:3306/g" wp-config-sample.php
+	sed -i "s/localhost/mariadb/g" wp-config-sample.php
 	sed -i "s/database_name_here/$MYSQL_DB/g" wp-config-sample.php
 	cp wp-config-sample.php wp-config.php
 	
+	while ! mysqladmin ping  -h"mariadb" --silent; do
+    	sleep 1
+	done
 	
 	wp core install \
 		--url=$WP_URL \
@@ -65,7 +68,7 @@ else
 		--role=author \
 		--allow-root
 	
-	wp user update bob \
+	wp user update $WP_AUTHOR_USER \
 		--user_pass=$WP_AUTHOR_PASSWORD \
 		--allow-root
 
